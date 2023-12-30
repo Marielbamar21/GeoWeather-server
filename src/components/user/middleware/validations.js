@@ -3,7 +3,6 @@ import { controllerUser } from '../../user/controller.js';
 import { message } from '../../../config/message.js';
 import {UserService} from '../../user/userService.js'
 import { v4 as uuidv4 } from 'uuid';
-import { HostNotFoundError } from 'sequelize';
 
 export const autCookie = (req, res, next) => { const cookieValue = req.cookies.userId;
     console.log(cookieValue, 'AAAAAAAAAAAAAAAAAAAAAAAAAAS');
@@ -15,9 +14,10 @@ export const autCookie = (req, res, next) => { const cookieValue = req.cookies.u
 
     }
     else{
-        console.log('esto ya esta egistrado')
-        return next();
+        console.log('esto ya esta registrado')
+        
     }
+    return next();
 }
 
     
@@ -28,8 +28,10 @@ export const validartorId = async (req, res) => {
       if (!userId) {
         const user = await controllerUser.createUser(id, res);
         handleResponse(res, 200, message.create_user, user);
+        return;
       } else {
         handleResponse(res, 200, message.duplicate_data);
+        return;
       }
     } catch (err) {
       handleError(err, res);
