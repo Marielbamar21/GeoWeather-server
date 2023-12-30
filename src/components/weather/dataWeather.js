@@ -28,10 +28,6 @@ export const dataWeather =
             type: DataTypes.FLOAT,
             allowNull: false
         } ,
-        snowIntensity:{
-            type: DataTypes.FLOAT,
-            allowNull: false
-        } ,
         temperature: {
             type: DataTypes.FLOAT,
             allowNull: false
@@ -54,14 +50,6 @@ export const dataWeather =
         } ,
         weatherCode: {
             type: DataTypes.INTEGER,
-            allowNull: false
-        } ,
-        windGust:{
-            type: DataTypes.FLOAT,
-            allowNull: false
-        } ,
-        windSpeed: {
-            type: DataTypes.FLOAT,
             allowNull: false
         } ,
         status:{

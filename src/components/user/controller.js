@@ -1,15 +1,13 @@
-import UserService from "./userService.js"
+import {UserService} from "./userService.js"
 import { message } from "../../config/message.js"
 import { handleResponse,handleError } from "../../middleware/errorHandlers.js"
 
-export const controller = {
+export const controllerUser = {
 
-    // userId
-    createUser: async( req = request , res = response) =>{
+    // Create userId
+    createUser: async(ip, res ) =>{
         try{
-            const ipUser = req.param;
-            console.log(ipUser)
-            const user = await UserService.createUser(ipUser)
+            const user = await UserService.createUser(ip)
             handleResponse(res,200,message.create_user,user)
         }
         catch(err){

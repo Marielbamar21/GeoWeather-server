@@ -11,7 +11,7 @@ export const dataUserIp = {
             },
         status:{
                 type: DataTypes.BOOLEAN,
-                defaultvalue: true
+                defaultValue: true
             }
 
 };

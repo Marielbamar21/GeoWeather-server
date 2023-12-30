@@ -1,11 +1,11 @@
 import { config } from '../../config/index.js';
 import axios from 'axios';
 
-export const conectionAPI = async () => {
+export const conectionAPI = async (location) => {
   try {
 
     const params = {
-      location: 'Barquisimeto'
+      location: location
     }
     const response = await axios.get(config.weather_url, { params });
     const datos = response.data

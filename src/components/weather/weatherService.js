@@ -2,18 +2,20 @@ import { Sequelize } from "sequelize";
 import { weatherModel } from "../../../service/database.js";
 
 
-    /*const getUsersIp = async()=>{
+    const getWeathers = async()=>{
 
-        const users = await weatherModel.findAll();
-        console.log(users);
-        return users;
+        const weathers = await weatherModel.findAll();
+        console.log(weathers);
+        return weathers;
     }
 
 
-    const getuserIp = async(ip) =>{
+    const getWeather = async(ip) =>{
 
-        const user = userIpModel.findOne({where : { ip : ip}})
-    }*/
+        const weather = weatherModel.findOne({where : { ip : ip}})
+        console.log(weather);
+        return weather;
+    }
 
 
     const createWeather =  async(datos) => {
@@ -24,30 +26,10 @@ import { weatherModel } from "../../../service/database.js";
 
     }
 
-
-    /*const updateUserIp = async(ip,newIp)=>{
-
-        const update = userIpModel.update({ip : newIp},{where: {ip:ip}});
-        console.log(update);
-        return update;
-
-    }
-
-
-    const deleteUserIp = async(ip) =>{
-
-        const del = userIpModel.destroy({where : { ip: ip}});
-        console.log(del);
-        return del;
-
-    }*/
-
     
-module.exports.weatherService = {
-    /*getUsersIp,
-    getuserIp,*/
-    createUserIp/*,
-    updateUserIp,
-    deleteUserIp*/
+export const weatherService = {
+    getWeathers,
+    getWeather,
+    createWeather
 
 }

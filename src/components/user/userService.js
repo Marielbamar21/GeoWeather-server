@@ -12,24 +12,21 @@ import { userIpModel } from "../../../service/database.js";
 
     const getUser = async(ip) =>{
 
-        const user = userIpModel.findOne({where : { ip : ip}})
+        const user = await userIpModel.findOne({where : { userIp : ip}})
         return user;
     }
 
 
     const createUser =  async(ip) => {
 
-        const newUser = new userIpModel.build({ ip: ip })
-        console.log(newUser);
+        const newUser = await userIpModel.create({ userIp: ip })
         return newUser;
 
     }
 
 
-    const UserIpService = {
+    export  const UserService = {
         getUsers,
         getUser,
         createUser
-      };
-      
-      export default UserIpService;
+    };
