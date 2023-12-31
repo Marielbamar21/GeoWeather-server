@@ -21,11 +21,13 @@ export const autCookie = async(req, res, next) => {
         console.log('Ya posee cookie', cookieValue)
         
     }
+  return next();
   }
   catch(err){
     handleError(err,res);
+    return next(err);
   }
-  return next();
+  
 }
 
     
