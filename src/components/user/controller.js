@@ -10,10 +10,11 @@ export const controllerUser = {
             const user = await UserService.createUser(ip)
             //handleResponse(res,200,message.create_user,user)
             console.log('Usuario Creado', user);
+            return user
         }
         catch(err){
             //handleError(err,res);
-            console.log('Error: ', err)
+            console.log('Error 3: ', err)
             
         }
         
@@ -24,6 +25,7 @@ export const controllerUser = {
             const ipUser = req.params;
             const user = await UserService.getUser(ipUser);
             handleResponse(res,200,message.success_long,user)
+            return user;
 
         }
         catch(err){

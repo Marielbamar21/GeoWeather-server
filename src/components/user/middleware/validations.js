@@ -47,6 +47,6 @@ return;
 return;
       }
     } catch (err) {
-      console.log('Error: ',err)
+      console.log('Error 2: ',err)
     }
   };
