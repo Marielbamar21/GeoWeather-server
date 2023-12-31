@@ -4,36 +4,43 @@ import { message } from '../../../config/message.js';
 import {UserService} from '../../user/userService.js'
 import { v4 as uuidv4 } from 'uuid';
 
-export const autCookie = (req, res, next) => { const cookieValue = req.cookies.userId;
+export const autCookie = async(req, res) => { 
+    try{
+    const cookieValue = req.cookies.userId;
     console.log(cookieValue, 'AAAAAAAAAAAAAAAAAAAAAAAAAAS');
     if(!cookieValue)
     {
             const userId =  uuidv4();
             res.cookie('userId', userId, { maxAge: 900000, httpOnly: true });
-            console.log('Cookie establecida')
+            console.log('Cookie establecida', userId)
+             await validartorId(res,userId);
 
     }
     else{
-        console.log('esto ya esta registrado')
+        await validartorId(res,cookieValue);
+        console.log('Ya posee cookie', cookieValue)
         
     }
-    return next();
+  }
+  catch(err){
+    handleError(err,res);
+  }
 }
 
     
-export const validartorId = async (req, res) => {
+export const validartorId = async (res, id) => {
     try {
-      const id = req.cookies.userId;
+      
       const userId = await UserService.getUser(id);
       if (!userId) {
         const user = await controllerUser.createUser(id, res);
         handleResponse(res, 200, message.create_user, user);
-        return;
+return;
       } else {
         handleResponse(res, 200, message.duplicate_data);
-        return;
+return;
       }
     } catch (err) {
-      handleError(err, res);
+      handleError(err,res)
     }
   };
