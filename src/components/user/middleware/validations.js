@@ -4,7 +4,7 @@ import { message } from '../../../config/message.js';
 import {UserService} from '../../user/userService.js'
 import { v4 as uuidv4 } from 'uuid';
 
-export const autCookie = async(req, res) => { 
+export const autCookie = async(req, res, next) => { 
     try{
     const cookieValue = req.cookies.userId;
     console.log(cookieValue, 'AAAAAAAAAAAAAAAAAAAAAAAAAAS');
@@ -25,6 +25,7 @@ export const autCookie = async(req, res) => {
   catch(err){
     handleError(err,res);
   }
+  return next();
 }
 
     
