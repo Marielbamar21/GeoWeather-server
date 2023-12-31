@@ -5,13 +5,15 @@ import { handleResponse,handleError } from "../../middleware/errorHandlers.js"
 export const controllerUser = {
 
     // Create userId
-    createUser: async(ip, res ) =>{
+    createUser: async(ip) =>{
         try{
             const user = await UserService.createUser(ip)
-            handleResponse(res,200,message.create_user,user)
+            //handleResponse(res,200,message.create_user,user)
+            console.log('Usuario Creado', user);
         }
         catch(err){
-            handleError(err,res);
+            //handleError(err,res);
+            console.log('Error: ', err)
             
         }
         

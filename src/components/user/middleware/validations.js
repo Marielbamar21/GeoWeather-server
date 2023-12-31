@@ -13,11 +13,12 @@ export const autCookie = async(req, res, next) => {
             const userId =  uuidv4();
             res.cookie('userId', userId, { maxAge: 900000, httpOnly: true });
             console.log('Cookie establecida', userId)
-             await validartorId(res,userId);
+             await validartorId(userId);
 
     }
     else{
-        await validartorId(res,cookieValue);
+        await validartorId(cookieValue);
+        handleResponse(res,200,message.duplicate_data)
         console.log('Ya posee cookie', cookieValue)
         
     }
@@ -31,19 +32,21 @@ export const autCookie = async(req, res, next) => {
 }
 
     
-export const validartorId = async (res, id) => {
+export const validartorId = async (id) => {
     try {
       
       const userId = await UserService.getUser(id);
       if (!userId) {
-        const user = await controllerUser.createUser(id, res);
-        handleResponse(res, 200, message.create_user, user);
+        const user = await controllerUser.createUser(id);
+        //handleResponse(res, 200, message.create_user, user);
+        console.log('Usuario creado',user)
 return;
       } else {
-        handleResponse(res, 200, message.duplicate_data);
+        //handleResponse(res, 200, message.duplicate_data);
+        console.log('El usuario ya esiste')
 return;
       }
     } catch (err) {
-      handleError(err,res)
+      console.log('Error: ',err)
     }
   };
