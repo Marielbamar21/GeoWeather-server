@@ -11,7 +11,7 @@ export const autCookie = async(req, res, next) => {
     if(!cookieValue)
     {
             const userId =  uuidv4();
-            res.cookie('userId', userId, { segurity: true, httpOnly: true , sameSite: 'lax'});
+            res.cookie('userId', userId, { httpOnly: true , });
             console.log('Cookie establecida', userId)
             await validartorId(userId);
 
