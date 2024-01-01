@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import { config } from "../config/index.js";
-import { dataUser } from "../src/components/user/dataUserIp.js"
+import { dataUser } from "../src/components/user/dataUser.js"
 import { dataWeather } from "../src/components/weather/dataWeather.js";
 
 export const db = new Sequelize(

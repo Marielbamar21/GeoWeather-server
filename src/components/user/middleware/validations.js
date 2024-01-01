@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from 'uuid';
 export const autCookie = async(req, res, next) => { 
     try{
     const cookieValue = req.cookies.userId;
-    console.log(cookieValue, 'AAAAAAAAAAAAAAAAAAAAAAAAAAS');
     if(!cookieValue)
     {
             const userId =  uuidv4();
@@ -17,9 +16,11 @@ export const autCookie = async(req, res, next) => {
 
     }
     else{
-        await validartorId(cookieValue);
+      
+        console.log(cookieValue, 'AAAAAAAAAAAAAAAAAAAAAAAAAAS');
+        const user = await validartorId(cookieValue);
         handleResponse(res,200,message.duplicate_data)
-        console.log('Ya posee cookie', cookieValue)
+        console.log('Ya posee cookie', user)
         
     }
   return next();
@@ -36,15 +37,17 @@ export const validartorId = async (id) => {
     try {
       
       const userId = await UserService.getUser(id);
+      console.log(id, 'aaaaaaaaaaaaaaaaaaaaaaaaaaa')
+      console.log(userId, 'bbbbbbbbbbbbbbbbbbbbbbbbbb')
       if (!userId) {
         const user = await controllerUser.createUser(id);
         //handleResponse(res, 200, message.create_user, user);
         console.log('Usuario creado',user)
-return;
+return userId;
       } else {
         //handleResponse(res, 200, message.duplicate_data);
         console.log('El usuario ya esiste')
-return;
+return userId;
       }
     } catch (err) {
       console.log('Error 2: ',err)

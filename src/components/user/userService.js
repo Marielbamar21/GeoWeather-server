@@ -11,14 +11,14 @@ import { userModel } from "../../../service/database.js";
 
     const getUser = async(id) =>{
 
-        const user = await userModel.findOne({where : { userIp : id}})
+        const user = await userModel.findOne({where : { userId : id}})
         return user;
     }
 
 
-    const createUser =  async(ip) => {
+    const createUser =  async(id) => {
 
-        const newUser = await userModel.create({ userId: ip })
+        const newUser = await userModel.create({ userId: id })
         return newUser;
 
     }
