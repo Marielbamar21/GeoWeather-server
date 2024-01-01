@@ -1,11 +1,11 @@
 import {  DataTypes  } from "sequelize";
-export const dataUserIp = {
+export const dataUser = {
         id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
             },
-        userIp: {
+        userId: {
                 type: DataTypes.STRING,
                 allowNull: false
             },

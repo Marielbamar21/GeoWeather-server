@@ -5,7 +5,7 @@ const router = Router();
 
     router.
         post('/newuser', autCookie )
-        //.get('/:ipUser',controllerUser.getUser)
+        .get('/:userId',controllerUser.getUser)
         .get('/users', controllerUser.getUsers)
 
 export const  userRouter = router;        

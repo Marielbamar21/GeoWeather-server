@@ -1,25 +1,24 @@
-import { Sequelize } from "sequelize";
-import { userIpModel } from "../../../service/database.js";
+import { userModel } from "../../../service/database.js";
 
 
     const getUsers = async()=>{
 
-        const users = await userIpModel.findAll();
+        const users = await userModel.findAll();
         console.log(users);
         return users;
     }
 
 
-    const getUser = async(ip) =>{
+    const getUser = async(id) =>{
 
-        const user = await userIpModel.findOne({where : { userIp : ip}})
+        const user = await userModel.findOne({where : { userIp : id}})
         return user;
     }
 
 
     const createUser =  async(ip) => {
 
-        const newUser = await userIpModel.create({ userIp: ip })
+        const newUser = await userModel.create({ userId: ip })
         return newUser;
 
     }

@@ -22,8 +22,10 @@ export const controllerUser = {
 
     getUser: async( req = request , res = response ) => {
         try{
-            const ipUser = req.params;
-            const user = await UserService.getUser(ipUser);
+            const  {params :{userId}}  = req;
+            console.log(userId, ' 11111111111111111111111111111111')
+            const user = await UserService.getUser(userId);
+            console.log(user,' 22222222222222222222222222222')
             handleResponse(res,200,message.success_long,user)
             return user;
 
@@ -36,13 +38,10 @@ export const controllerUser = {
     getUsers : async(req = request , res = response) =>
     {
         try{
-            console.log('1111111111111111')
             const users = await UserService.getUsers();
-            console.log('1111111111111112')
             handleResponse(res,200, message.success_long,users)
         }
         catch(err){
-            console.log('1111111111111113')
             handleError(err,res);
 
         }
