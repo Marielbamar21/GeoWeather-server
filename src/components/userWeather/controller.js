@@ -1,26 +1,25 @@
-import {UserService} from "./userService.js"
+import {UserWeatherService} from "./userWeatherService.js"
 import { message } from "../../config/message.js"
 import { handleResponse,handleError } from "../../middleware/errorHandlers.js"
 
-export const controllerUser = {
+export const controllerUserWeather = {
 
-    // Create userId
-    createUser: async(ip,res) =>{
+    // Create 
+    createUser: async(userId, weatherId) =>{
         try{
-            const user = await UserService.createUser(ip)
-            handleResponse(res,200,message.create_user,user)
-            console.log('Usuario Creado', user);
-            return user
+            const newUserWeather= await UserWeatherService.createUserWeather(userId,weatherId);
+            console.log('Clima Creado', newUserWeather);
+            handleResponse(res,200,message.create_user,newUserWeather);
+            
         }
         catch(err){
             handleError(err,res);
-            console.log('Error 3: ', err)
             
         }
         
-    },
+    }
 
-    getUser: async( req = request , res = response ) => {
+    /*getUser: async( req = request , res = response ) => {
         try{
             const  {params :{userId}}  = req;
             console.log(userId, ' 11111111111111111111111111111111')
@@ -45,6 +44,6 @@ export const controllerUser = {
             handleError(err,res);
 
         }
-    }
+    }*/
     
 }

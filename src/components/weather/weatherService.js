@@ -12,7 +12,7 @@ import { weatherModel } from "../../../service/database.js";
 
     const getWeather = async(ip) =>{
 
-        const weather = weatherModel.findOne({where : { ip : ip}})
+        const weather =await weatherModel.findOne({where : { ip : ip}})
         console.log(weather);
         return weather;
     }
@@ -20,7 +20,7 @@ import { weatherModel } from "../../../service/database.js";
 
     const createWeather =  async(datos) => {
 
-        const newWeather = new weatherModel.build(datos)
+        const newWeather = await weatherModel.create(datos)
         console.log(newWeather);
         return newWeather;
 

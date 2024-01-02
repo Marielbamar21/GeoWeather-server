@@ -7,10 +7,6 @@ export const dataWeather =
                 primaryKey: true,
                 autoIncrement: true,
             },
-        time: {
-                type: DataTypes.DATE,
-                allowNull: false
-            },
             
         humidity:{
             type: DataTypes.FLOAT,

@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import { config } from "../config/index.js";
 import { dataUser } from "../src/components/user/dataUser.js"
 import { dataWeather } from "../src/components/weather/dataWeather.js";
+import {dataUserWeather} from "../src/components/userWeather/dataUserWeather.js"
 
 export const db = new Sequelize(
   config.bd_name, //bdName
@@ -55,6 +56,8 @@ export const db = new Sequelize(
 
 const User = db.define('user', dataUser);
 const Weather = db.define('weather', dataWeather);
+const UserWeather = db.define('userWeather', dataUserWeather);
+
 
 
 //Relationships between models
@@ -74,6 +77,7 @@ export const syncModels = async () => {
 //Export models
 export const userModel = User;
 export const weatherModel = Weather;
+export const userWeatherModel= UserWeather;
 
 
 

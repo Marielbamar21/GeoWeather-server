@@ -11,15 +11,12 @@ export const autCookie = async(req, res, next) => {
     {
             const userId =  uuidv4();
             res.cookie('userId', userId, { httpOnly: true , });
-            handleResponse(res, 200,'Cookie Creado', userId)
-            await validartorId(userId);
+            await validartorId(userId,res);
 
     }
     else{
-      
         console.log(cookieValue, 'AAAAAAAAAAAAAAAAAAAAAAAAAAS');
-        const user = await validartorId(cookieValue);
-        handleResponse(res,200,message.duplicate_data)
+        const user = await validartorId(cookieValue,res) 
         console.log('Ya posee cookie', user)
         
     }
@@ -33,19 +30,18 @@ export const autCookie = async(req, res, next) => {
 }
 
     
-export const validartorId = async (id) => {
+export const validartorId = async (id,res) => {
     try {
       
       const userId = await UserService.getUser(id);
-      console.log(id, 'aaaaaaaaaaaaaaaaaaaaaaaaaaa')
-      console.log(userId, 'bbbbbbbbbbbbbbbbbbbbbbbbbb')
+      //console.log(id, 'aaaaaaaaaaaaaaaaaaaaaaaaaaa')
+      //console.log(userId, 'bbbbbbbbbbbbbbbbbbbbbbbbbb')
       if (!userId) {
-        const user = await controllerUser.createUser(id);
-        //handleResponse(res, 200, message.create_user, user);
+        const user = await controllerUser.createUser(id,res);
         console.log('Usuario creado',user)
 return userId;
       } else {
-        //handleResponse(res, 200, message.duplicate_data);
+        handleResponse(res,200,message.duplicate_data,userId)
         console.log('El usuario ya esiste')
 return userId;
       }
