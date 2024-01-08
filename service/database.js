@@ -1,7 +1,6 @@
 import { Sequelize } from "sequelize";
 import { config } from "../config/index.js";
 import { dataUser } from "../src/components/user/dataUser.js"
-import { dataWeather } from "../src/components/weather/dataWeather.js";
 import {dataUserWeather} from "../src/components/userWeather/dataUserWeather.js"
 
 export const db = new Sequelize(
@@ -55,14 +54,14 @@ export const db = new Sequelize(
 //Tables in DB
 
 const User = db.define('user', dataUser);
-const Weather = db.define('weather', dataWeather);
 const UserWeather = db.define('userWeather', dataUserWeather);
 
 
 
+
 //Relationships between models
-User.belongsToMany( Weather, { through: 'userWeather'});
-Weather.belongsToMany(User, { through: 'userWeather'} );
+User.hasMany( UserWeather);
+UserWeather.belongsTo(User);
 
 //Synchronizing all models at once
 export const syncModels = async () => {
@@ -76,7 +75,6 @@ export const syncModels = async () => {
 
 //Export models
 export const userModel = User;
-export const weatherModel = Weather;
 export const userWeatherModel= UserWeather;
 
 

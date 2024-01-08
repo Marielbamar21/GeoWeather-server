@@ -8,10 +8,43 @@ export const dataUserWeather = {
         userId: {
             type: DataTypes.INTEGER,
             allowNull: false
+            }, 
+            humidity:{
+                type: DataTypes.FLOAT,
+                allowNull: false
+            } ,
+            precipitationProbability:{
+                type: DataTypes.FLOAT,
+                allowNull: false
             },
-        weatherId:{
-            type: DataTypes.INTEGER,
-            allowNull: false
-            }
+            rainIntensity: {
+                type: DataTypes.FLOAT,
+                allowNull: false
+            } ,
+            temperature: {
+                type: DataTypes.FLOAT,
+                allowNull: false
+            } ,
+            temperatureApparent: {
+                type: DataTypes.FLOAT,
+                allowNull: false
+            } ,
+            uvHealthConcern: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            } ,
+            visibility: {
+                type: DataTypes.FLOAT,
+                allowNull: false
+            } ,
+            weatherCode: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            } ,
+            status:{
+                    type: DataTypes.BOOLEAN,
+                    defaultvalue: true
+                }
+    
 
 };

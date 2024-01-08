@@ -1,5 +1,5 @@
 import {handleError, handleResponse} from '../../../middleware/errorHandlers.js';
-import { controllerWeather } from '../controller.js';
+import { controllerUserWeather } from '../controller.js';
 import { message } from '../../../config/message.js';
 import {UserService} from '../../user/userService.js';
 
@@ -13,8 +13,7 @@ export const  validator = async(req,res,next) =>{
             
         }
         else{
-            console.log(user.id)
-            await controllerWeather.createWeather(req,res,user.id);
+            await controllerUserWeather.createUserWeather(req,res,user.id);
             console.log('El usuario si existe');
         }
     }

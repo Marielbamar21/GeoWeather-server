@@ -1,17 +1,17 @@
 import { userWeatherModel } from "../../../service/database.js";
 
 
-    const getWeathers = async(idUser)=>{
+    const getWeathers = async()=>{
 
-        const weathers = await userWeatherModel.findAll({where: {userId:idUser}});
+        const weathers = await userWeatherModel.findAll();
         console.log(weathers);
         return weathers;
     }
 
 
-    const getWeather = async(idUser,idWeather) =>{
+    const getUserWeather = async(idUser) =>{
         try{
-            const weather = await userWeatherModel.findOne({where : { userId : idUser, weatherId: idWeather}})
+            const weather = await userWeatherModel.findOne({where : { userId : idUser}})
             return weather;
         }
         catch(err){
@@ -21,10 +21,8 @@ import { userWeatherModel } from "../../../service/database.js";
     }
 
 
-    const createUserWeather =  async(userId,weatherId) => {
-        console.log('UUUUUUUUSSSSSSSEEEEEEEEEERRRRRRRR', userId);
-        console.log('WWWWWWWWWWWW', weatherId)
-        const newUserWeather = await userWeatherModel.create({  weatherId: weatherId , userId: userId})
+    const createUserWeather =  async(data) => {
+        const newUserWeather = await userWeatherModel.create(data);
         return newUserWeather;
 
     }
@@ -32,6 +30,6 @@ import { userWeatherModel } from "../../../service/database.js";
 
     export  const UserWeatherService = {
         getWeathers,
-        getWeather,
+        getUserWeather,
         createUserWeather
     };

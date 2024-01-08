@@ -1,10 +1,10 @@
 import { Router} from 'express'
 import { userRouter } from '../components/user/routes.js'
-import { weatherRouter} from '../components/weather/routes.js'
+import { userWeatherRouter} from '../components/userWeather/routes.js'
  const router = Router();
 
     router.use('/user', userRouter );
-    router.use('/weather', weatherRouter);
+    router.use('/weather', userWeatherRouter);
 
 
 export const routes = router;
