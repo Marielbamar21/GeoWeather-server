@@ -39,6 +39,7 @@ export const controllerUser = {
     {
         try{
             const users = await UserService.getUsers();
+            console.log(users);
             handleResponse(res,200, message.success_long,users)
         }
         catch(err){

@@ -15,18 +15,16 @@ export const autCookie = async(req, res, next) => {
 
     }
     else{
-        console.log(cookieValue, 'AAAAAAAAAAAAAAAAAAAAAAAAAAS');
         const user = await validartorId(cookieValue,res) 
         console.log('Ya posee cookie', user)
         
     }
-  return next();
+  
   }
   catch(err){
     handleError(err,res);
-    return next(err);
   }
-  
+  return next();
 }
 
     
@@ -34,8 +32,6 @@ export const validartorId = async (id,res) => {
     try {
       
       const userId = await UserService.getUser(id);
-      //console.log(id, 'aaaaaaaaaaaaaaaaaaaaaaaaaaa')
-      //console.log(userId, 'bbbbbbbbbbbbbbbbbbbbbbbbbb')
       if (!userId) {
         const user = await controllerUser.createUser(id,res);
         console.log('Usuario creado',user)
@@ -46,6 +42,7 @@ return userId;
 return userId;
       }
     } catch (err) {
+      handleError(err,res)
       console.log('Error 2: ',err)
     }
   };
