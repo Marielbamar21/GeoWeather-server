@@ -8,12 +8,10 @@ export const controllerUser = {
     createUser: async(ip,res) =>{
         try{
             const user = await UserService.createUser(ip)
-            handleResponse(res,200,message.create_user,user)
             console.log('Usuario Creado', user);
             return user
         }
         catch(err){
-            handleError(err,res);
             console.log('Error 3: ', err)
             
         }
