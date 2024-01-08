@@ -10,15 +10,21 @@ import { userWeatherModel } from "../../../service/database.js";
 
 
     const getWeather = async(idUser,idWeather) =>{
-
-        const weather = await userWeatherModel.findOne({where : { userId : idUser, weatherId: idWeather}})
-        return weather;
+        try{
+            const weather = await userWeatherModel.findOne({where : { userId : idUser, weatherId: idWeather}})
+            return weather;
+        }
+        catch(err){
+            console.log('ERROORRRRS', err)
+        }
+        
     }
 
 
     const createUserWeather =  async(userId,weatherId) => {
-
-        const newUserWeather = await userWeatherModel.create({ userId: userId, weatherId: weatherId})
+        console.log('UUUUUUUUSSSSSSSEEEEEEEEEERRRRRRRR', userId);
+        console.log('WWWWWWWWWWWW', weatherId)
+        const newUserWeather = await userWeatherModel.create({  weatherId: weatherId , userId: userId})
         return newUserWeather;
 
     }

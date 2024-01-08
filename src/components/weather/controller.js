@@ -1,37 +1,31 @@
 import {weatherService} from './weatherService.js';
 import {UserWeatherService} from '../userWeather/userWeatherService.js'
-import {UserService} from '../user/userService.js'
 import { conectionAPI } from '../../conection.js/API.js';
 import { handleResponse,handleError } from "../../middleware/errorHandlers.js"
 import { message } from "../../config/message.js"
 
 
 export const controllerWeather = {
-    createWeather: async(req = request, res = response) =>{
+    createWeather: async(req = request, res = response,userId) =>{
 
         try{
-        
-        const {location,userId} = req.params;
-        const wthr = await conectionAPI(location);
-        const { humidity,precipitationProbability,rainIntensity,sleetIntensity,temperature,temperatureApparent,
-            uvHealthConcern,uvIndex,visibility,weatherCode} = wthr.values
-        
-        const user = await UserService.getUser(userId)
-        
+        const {location} = req.params;
+        const wthr = await conectionAPI(location); 
+        const { humidity,precipitationProbability,rainIntensity,temperature,temperatureApparent,
+            uvHealthConcern,visibility,weatherCode} = wthr.values;
         
         const weather = await weatherService.createWeather({ humidity : humidity ,precipitationProbability : precipitationProbability ,rainIntensity : rainIntensity ,
-                                                        sleetIntensity : sleetIntensity , temperature : temperature , temperatureApparent : temperatureApparent ,uvHealthConcern : uvHealthConcern ,
-                                                        uvIndex : uvIndex , visibility : visibility, weatherCode : weatherCode});
+                                                            temperature : temperature , temperatureApparent : temperatureApparent ,uvHealthConcern : uvHealthConcern ,
+                                                            visibility : visibility, weatherCode : weatherCode});
         
-        const userWeather = await UserWeatherService.createUserWeather(user.id,weather.id);
-
-
+        console.log('AAAAAAAAAAAAAA', weather.id)
+        const userWeather = await UserWeatherService.createUserWeather(userId,weather.id);
         handleResponse(res,200,message.success_long,userWeather);
+        return;
         
     }
     catch(err){
-
-        handleError(err,res);
+        console.log('Error: ',err);
 
     }
     },

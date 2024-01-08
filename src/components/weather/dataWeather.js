@@ -20,10 +20,6 @@ export const dataWeather =
             type: DataTypes.FLOAT,
             allowNull: false
         } ,
-        sleetIntensity: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        } ,
         temperature: {
             type: DataTypes.FLOAT,
             allowNull: false
@@ -33,10 +29,6 @@ export const dataWeather =
             allowNull: false
         } ,
         uvHealthConcern: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        } ,
-        uvIndex: {
             type: DataTypes.INTEGER,
             allowNull: false
         } ,

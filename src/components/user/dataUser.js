@@ -7,7 +7,8 @@ export const dataUser = {
             },
         userId: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                
             },
         status:{
                 type: DataTypes.BOOLEAN,

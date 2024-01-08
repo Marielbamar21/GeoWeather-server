@@ -7,11 +7,11 @@ export const dataUserWeather = {
             },
         userId: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
             },
         weatherId:{
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
             }
 
 };
