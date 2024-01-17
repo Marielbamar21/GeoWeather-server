@@ -1,15 +1,20 @@
-import express  from 'express';
+import express from 'express';
 import cors from 'cors'; 
-import { routes } from './src/routes/routes.js'
+import { routes } from './src/routes/routes.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
-app.use(cors())
-app.use(express.urlencoded({ extended: false })) // imagenes que vengan desde formularios
-app.use(express.json()) // tener objetos json
+
+// Configurar cors
+app.use(cors({
+  credentials: true,
+  origin: ['http://127.0.0.1:5500', 'https://7tbx6r3z-5500.use2.devtunnels.ms']
+}));
+
+// Agregar cookie parser
 app.use(cookieParser());
-app.use('/GeoWeather',routes);
 
-
+// Configurar rutas
+app.use('/GeoWeather', routes);
 
 export default app;

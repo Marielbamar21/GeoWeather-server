@@ -8,6 +8,7 @@ export const dataUser = {
         userId: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                unique: true
                 
             },
         status:{

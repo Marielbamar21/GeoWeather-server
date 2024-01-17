@@ -24,12 +24,12 @@ export const controllerUser = {
             console.log(userId, ' 11111111111111111111111111111111')
             const user = await UserService.getUser(userId);
             console.log(user,' 22222222222222222222222222222')
-            handleResponse(res,200,message.success_long,user)
+            //handleResponse(res,200,message.success_long,user)
             return user;
 
         }
         catch(err){
-            handleError(err,res)
+            console.log('Error: (getUser) ', err)
 
         }
     },

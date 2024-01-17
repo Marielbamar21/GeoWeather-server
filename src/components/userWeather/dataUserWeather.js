@@ -6,9 +6,18 @@ export const dataUserWeather = {
                 autoIncrement: true,
             },
         userId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.STRING, 
+            allowNull: false,
+            references: {
+                model: 'users',
+                key: 'userId',
+
+            }
             }, 
+            location:{
+                type: DataTypes.STRING,
+                allowNull: false
+            },
             humidity:{
                 type: DataTypes.FLOAT,
                 allowNull: false
@@ -30,7 +39,7 @@ export const dataUserWeather = {
                 allowNull: false
             } ,
             uvHealthConcern: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.FLOAT,
                 allowNull: false
             } ,
             visibility: {

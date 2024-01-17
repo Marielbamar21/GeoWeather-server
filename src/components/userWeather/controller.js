@@ -6,40 +6,46 @@ import { handleResponse,handleError } from "../../middleware/errorHandlers.js"
 export const controllerUserWeather = {
 
     // Create 
-    createUserWeather: async(req,res,userId) =>{
+    createUserWeather: async(req,res) =>{
         try{
-            const {location} = req.params;
-            const wthr = await conectionAPI(location); 
-            const { humidity,precipitationProbability,rainIntensity,temperature,temperatureApparent,
-                uvHealthConcern,visibility,weatherCode} = wthr.values;
+            const { location } = req.params;
+            const userId = req.cookies.userId;
+            const data = await conectionAPI(location);
+            console.log('DATAAA', data)
+            if( !data){
+                handleResponse(res,200,'Esta ubicacion no existe', null)
+                return;
+            }
             
-            const weather = await UserWeatherService.createUserWeather({ userId: userId,humidity : humidity ,precipitationProbability : precipitationProbability ,rainIntensity : rainIntensity ,
-                                                                temperature : temperature , temperatureApparent : temperatureApparent ,uvHealthConcern : uvHealthConcern ,
-                                                                visibility : visibility, weatherCode : weatherCode});
+            const { name } = data.location;
+            const valuesWeather = data.data;
+            const { humidity,precipitationProbability,rainIntensity,temperature,temperatureApparent,
+                uvHealthConcern,visibility,weatherCode} = valuesWeather.values;
+
+            const weather = await UserWeatherService.createUserWeather({ userId: userId ,location: name ,humidity : humidity ,precipitationProbability : precipitationProbability ,rainIntensity : rainIntensity ,
+                                                                        temperature : temperature , temperatureApparent : temperatureApparent ,uvHealthConcern : uvHealthConcern ,
+                                                                        visibility : visibility, weatherCode : weatherCode});
+            
             handleResponse(res,200,message.success_long,weather);
             return;
             
         }
         catch(err){
-            console.log('Error: ',err);
+            console.log(err,res)
     
         }
         
     },
 
-    getUserWeather: async( req = request , res = response ) => {
+    getUserWeather: async( req, res ) => {
         try{
-            const  userId = req.cookie.userId;
-            console.log(userId, ' 11111111111111111111111111111111')
+            const  userId = req.cookies.userId;
             const userWeather = await UserWeatherService.getUserWeather(userId);
-            console.log(userWeather,' 22222222222222222222222222222')
             handleResponse(res,200,message.success_long,userWeather)
-            return userWeather;
 
         }
         catch(err){
-            handleError(err,res)
-
+            console.log('Error getUserWeather: ', err   )
         }
     },
     getWeathers : async(req = request , res = response) =>

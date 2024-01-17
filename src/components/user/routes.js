@@ -4,7 +4,7 @@ import {autCookie,validartorId} from './middleware/validations.js'
 const router = Router();
 
     router.
-        post('/newuser', autCookie )
+        get('/newuser', autCookie )
         .get('/:userId',controllerUser.getUser)
         .get('/users', controllerUser.getUsers)
 

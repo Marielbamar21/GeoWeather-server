@@ -4,7 +4,7 @@ import {validator} from './middleware/validation.js'
 const router = Router();
 
     router.post('/newWeather/:location', validator, controllerUserWeather.createUserWeather);
-    router.get('/weather',controllerUserWeather.getUserWeather)
+    router.get('/',validator, controllerUserWeather.getUserWeather)
 
 
 export const userWeatherRouter = router;

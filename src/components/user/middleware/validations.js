@@ -10,9 +10,10 @@ export const autCookie = async(req, res, next) => {
     if(!cookieValue)
     {
             const userId =  uuidv4();
-            res.cookie('userId', userId, {  });
+            res.cookie('userId', userId, { path: '/',   httpOnly: true, secure: true, sameSite: 'None'});
+            
             await validartorId(userId,res);
-            handleResponse(res,200,message.create_user,userId);
+            res.send('Cookie Creado')
 
     }
     else{
