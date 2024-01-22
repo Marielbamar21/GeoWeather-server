@@ -49,11 +49,7 @@ export const dataUserWeather = {
             weatherCode: {
                 type: DataTypes.INTEGER,
                 allowNull: false
-            } ,
-            status:{
-                    type: DataTypes.BOOLEAN,
-                    defaultvalue: true
-                }
+            } 
     
 
 };

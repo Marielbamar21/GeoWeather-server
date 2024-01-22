@@ -21,9 +21,7 @@ export const controllerUser = {
     getUser: async( req = request , res = response ) => {
         try{
             const  {params :{userId}}  = req;
-            console.log(userId, ' 11111111111111111111111111111111')
             const user = await UserService.getUser(userId);
-            console.log(user,' 22222222222222222222222222222')
             //handleResponse(res,200,message.success_long,user)
             return user;
 

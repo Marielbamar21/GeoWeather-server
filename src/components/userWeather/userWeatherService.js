@@ -9,7 +9,7 @@ import { userWeatherModel } from "../../../service/database.js";
     }
 
 
-    const getUserWeather = async(idUser, offset = 0, limit = 2) =>{
+    const getUserWeather = async(idUser, offset = 0, limit = 10) =>{
         try{
             
             const weather = await userWeatherModel.findAll({where : { userId : idUser}, offset: offset, limit : limit })
