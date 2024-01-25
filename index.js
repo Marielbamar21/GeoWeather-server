@@ -8,7 +8,7 @@ const app = express();
 // Configurar cors
 app.use(cors({
   credentials: true,
-  origin: ['http://127.0.0.1:5500', 'https://7tbx6r3z-5500.use2.devtunnels.ms']
+  origin: ['http://127.0.0.1:5500', 'https://geo-weather-sooty.vercel.app']
 }));
 
 // Agregar cookie parser
