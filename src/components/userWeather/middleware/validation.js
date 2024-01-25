@@ -12,20 +12,11 @@ export const  validator = async(req,res,next) =>{
         }
         else{
             const user = await UserService.getUser(userId);
-            !user ? handleResponse(res,409,message.error_user,null): console.log('El usuario si existe');
+            !user ? handleResponse(res,409,message.error_user,null): next();
         }
     }
     catch(err){
         handleError(err,res);
     }
-    return next();
+    
 }
-/*export const  validator = async(req,res,next) =>{
-    try{
-        const userId = req.cookies.userId;
-        
-        const weathers = controllerUserWeather.getUserWeather()
-    }
-        catch(err){
-
-        }}*/

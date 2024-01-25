@@ -11,7 +11,6 @@ export const controllerUserWeather = {
             const { location } = req.params;
             const userId = req.cookies.userId;
             const data = await conectionAPI(location);
-            console.log('DATAAA', data)
             if( !data){
                 handleResponse(res,200,'Esta ubicacion no existe', null)
                 return;
@@ -31,7 +30,7 @@ export const controllerUserWeather = {
             
         }
         catch(err){
-            console.log(err,res)
+            handleError(err,res)
     
         }
         
@@ -45,7 +44,7 @@ export const controllerUserWeather = {
 
         }
         catch(err){
-            console.log('Error getUserWeather: ', err   )
+            handleError(err,res);
         }
     },
     getWeathers : async(req = request , res = response) =>

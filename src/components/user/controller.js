@@ -1,18 +1,20 @@
 import {UserService} from "./userService.js"
 import { message } from "../../config/message.js"
 import { handleResponse,handleError } from "../../middleware/errorHandlers.js"
+import { v4 as uuidv4 } from 'uuid';
 
 export const controllerUser = {
 
     // Create userId
-    createUser: async(ip,res) =>{
+    createUser: async(req,res) =>{
         try{
-            const user = await UserService.createUser(ip)
-            console.log('Usuario Creado', user);
-            return user
+            const userId =  uuidv4();
+            res.cookie('userId', userId, { path: '/',   httpOnly: true, secure: true, sameSite: 'None'});
+            const user = await UserService.createUser(userId);
+            handleResponse(res,200,message.create_user,user);
         }
         catch(err){
-            console.log('Error 3: ', err)
+            handleError(err,res)
             
         }
         
