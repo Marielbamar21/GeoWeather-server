@@ -8,7 +8,7 @@ const app = express();
 // Configurar cors
 app.use(cors({
   credentials: true,
-  origin: ['http://127.0.0.1:5500', 'https://geo-weather-sooty.vercel.app', 'https://geo-weather-g8tzm8h3q-marielbamar21.vercel.app']
+  origin: ['http://127.0.0.1:5500', 'https://geo-weather-git-master-marielbamar21.vercel.app', 'https://geo-weather-g8tzm8h3q-marielbamar21.vercel.app']
 }));
 
 // Agregar cookie parser
